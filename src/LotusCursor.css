@@ -1,0 +1,212 @@
+
+/* =====================================
+   SHE — LOTUS CURSOR
+===================================== */
+
+html,
+body,
+.website,
+.website * {
+  cursor: none !important;
+}
+
+/* Custom lotus cursor */
+.lotus-cursor {
+  position: fixed;
+  z-index: 999999;
+  pointer-events: none;
+  width: 38px;
+  height: 38px;
+  transform: translate(-12px, -12px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  filter: drop-shadow(0 0 8px rgba(224, 173, 255, 0.65));
+}
+
+.lotus-cursor.visible {
+  opacity: 1;
+}
+
+.lotus-cursor svg {
+  display: block;
+  overflow: visible;
+  animation: lotusCursorFloat 2.5s ease-in-out infinite;
+}
+
+/* Flower and sparkle trail */
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  animation: cursorTrailFade 850ms ease-out forwards;
+}
+
+/* Rainbow sparkle */
+.cursor-trail.rainbow {
+  font-size: 22px;
+  font-weight: bold;
+
+  background: linear-gradient(
+    135deg,
+    #ff91c8,
+    #b69aff,
+    #7edcff,
+    #a2f0c2,
+    #ffe28d,
+    #ff91c8
+  );
+
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.9));
+  animation:
+    cursorTrailFade 850ms ease-out forwards,
+    rainbowShift 3s linear infinite;
+}
+
+/* Flower trail */
+.cursor-trail.flower {
+  font-size: 30px;
+  color: var(--trail-color);
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    0 0 12px var(--trail-color);
+}
+
+/* Cursor animations */
+@keyframes cursorTrailFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5) rotate(-20deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -85%) scale(1.5) rotate(30deg);
+  }
+}
+
+@keyframes rainbowShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes lotusCursorFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  50% {
+    transform: translateY(-3px) rotate(5deg);
+  }
+}
+
+/* Don't use custom cursor on touch devices */
+@media (hover: none), (pointer: coarse) {
+  html,
+  body,
+  .website,
+  .website * {
+    cursor: auto !important;
+  }
+
+  .lotus-cursor,
+  .cursor-trail {
+    display: none !important;
+  }
+}
+
+/* Accessibility: reduce movement */
+@media (prefers-reduced-motion: reduce) {
+  .lotus-cursor svg {
+    animation: none;
+  }
+
+  .cursor-trail {
+    animation-duration: 300ms;
+  }
+}
+/* ==================================
+   THICK LOTUS MAGIC TRAIL
+================================== */
+
+.cursor-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999998;
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+/* THICK RAINBOW GLITTER */
+
+.cursor-trail.rainbow {
+  font-size: 24px;
+
+  background: linear-gradient(
+    45deg,
+    #ff70c5,
+    #c084fc,
+    #67d9ff,
+    #8af5c8,
+    #fff08a,
+    #ff9fbd,
+    #b794ff
+  );
+
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  filter:
+    drop-shadow(0 0 4px rgba(255, 255, 255, 0.9))
+    drop-shadow(0 0 9px rgba(214, 157, 255, 0.8));
+}
+
+/* BIGGER FLOWERS */
+
+.cursor-trail.flower {
+  font-size: 32px;
+
+  filter:
+    drop-shadow(0 0 5px white)
+    drop-shadow(0 0 12px var(--trail-color));
+}
+
+/* Longer, more visible fade */
+
+@keyframes cursorTrailFade {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.3) rotate(-25deg);
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg);
+  }
+
+  70% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -130%) scale(1.8) rotate(45deg);
+  }
+}

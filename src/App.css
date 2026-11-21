@@ -1,0 +1,2067 @@
+
+/* =========================================
+   SHE — COLOR SYSTEM
+========================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap');
+
+:root {
+  --lavender: #c9b8ff;
+  --deep-lavender: #8f79d9;
+  --pink: #ffc8df;
+  --blue: #a9e4f9;
+  --mint: #c6f3d5;
+  --yellow: #fff0b8;
+
+  --background: #faf8ff;
+  --text: #29243b;
+  --muted: #79748b;
+  --white: #ffffff;
+
+  --radius: 28px;
+  --transition: 0.35s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background: var(--background);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+.website {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 10% 8%,
+      rgba(201, 184, 255, 0.38),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(255, 200, 223, 0.34),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 50% 60%,
+      rgba(169, 228, 249, 0.15),
+      transparent 35%
+    ),
+    var(--background);
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.navbar {
+  width: 100%;
+  padding: 25px 8%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 100;
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -2px;
+}
+
+.logo span,
+.footer-logo span {
+  color: var(--deep-lavender);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 38px;
+}
+
+.nav-links a {
+  font-size: 13px;
+  color: var(--muted);
+  transition: var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--deep-lavender);
+}
+
+.menu-toggle {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero {
+  min-height: 720px;
+  padding: 70px 8% 110px;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  align-items: center;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 580px;
+  position: relative;
+  z-index: 5;
+  animation: fadeUp 1s ease both;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 17px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 184, 255, 0.3);
+  border-radius: 50px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--deep-lavender);
+  margin-bottom: 30px;
+}
+
+.tag-dot {
+  width: 7px;
+  height: 7px;
+  background: #a78bfa;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #a78bfa;
+}
+
+.hero-label {
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--deep-lavender);
+  margin-bottom: 18px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(65px, 7.5vw, 105px);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -4px;
+}
+
+.hero h1 span {
+  color: var(--deep-lavender);
+  font-style: italic;
+}
+
+.hero-description {
+  max-width: 440px;
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-top: 28px;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin-top: 35px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 24px;
+  border-radius: 50px;
+  font-size: 13px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--deep-lavender);
+  color: white;
+  box-shadow: 0 8px 25px rgba(143, 121, 217, 0.2);
+}
+
+.btn-primary:hover {
+  background: #7861c2;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(143, 121, 217, 0.3);
+}
+
+.btn-secondary {
+  border: 1px solid rgba(143, 121, 217, 0.25);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text);
+}
+
+.btn-secondary:hover {
+  background: white;
+  transform: translateY(-3px);
+}
+
+.hero-bottom-note {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 55px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #a19aaf;
+}
+
+.note-divider {
+  color: #b7a1f4;
+}
+
+/* =========================================
+   3D LOTUS ENVIRONMENT
+========================================= */
+
+.hero-visual {
+  height: 570px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-glow {
+  position: absolute;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(201, 184, 255, 0.65) 0%,
+    rgba(255, 200, 223, 0.4) 35%,
+    rgba(169, 228, 249, 0.25) 60%,
+    transparent 75%
+  );
+
+  filter: blur(35px);
+  animation: glowPulse 6s ease-in-out infinite;
+}
+
+/* ===================================
+   LOTUS — FULL MODEL VISIBILITY
+=================================== */
+
+.hero-visual {
+  overflow: visible !important;
+}
+
+.lotus-scene {
+  overflow: visible !important;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.three-scene {
+  width: 100%;
+  height: 100%;
+  overflow: visible !important;
+  position: relative;
+}
+
+.three-scene canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.floating-label {
+  position: absolute;
+  z-index: 5;
+  padding: 12px 18px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  color: #8274ac;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 30px rgba(130, 110, 180, 0.08);
+}
+
+.label-top {
+  top: 80px;
+  right: 2%;
+  animation: float 5s ease-in-out infinite;
+}
+
+.label-top span {
+  color: #bc94ed;
+  margin-right: 6px;
+}
+
+.label-bottom {
+  bottom: 65px;
+  left: 2%;
+  animation: float 6s ease-in-out infinite reverse;
+}
+
+.decor {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.decor-star {
+  color: #a58be9;
+  top: 19%;
+  left: 15%;
+  font-size: 35px;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.decor-sparkle {
+  color: #e9a5cc;
+  right: 12%;
+  bottom: 24%;
+  font-size: 40px;
+  animation: sparkle 4s ease-in-out infinite;
+}
+
+.decor-circle {
+  width: 15px;
+  height: 15px;
+  background: var(--blue);
+  border-radius: 50%;
+  top: 28%;
+  right: 18%;
+  box-shadow: 0 0 20px rgba(169, 228, 249, 0.9);
+}
+
+/* HERO SCROLL INDICATOR */
+
+.hero-scroll {
+  position: absolute;
+  bottom: 35px;
+  left: 8%;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #aaa2bd;
+}
+
+.scroll-line {
+  width: 45px;
+  height: 1px;
+  background: var(--deep-lavender);
+}
+
+/* =========================================
+   FEATURES
+========================================= */
+
+.features {
+  padding: 120px 8%;
+  position: relative;
+}
+
+.section-heading {
+  max-width: 600px;
+  margin-bottom: 60px;
+}
+
+.section-eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--deep-lavender);
+  margin-bottom: 22px;
+}
+
+.section-eyebrow span {
+  color: #b1a6c7;
+}
+
+.section-heading h2,
+.about-content h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(42px, 5vw, 66px);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -2px;
+}
+
+.section-heading h2 span {
+  font-style: italic;
+  color: var(--deep-lavender);
+}
+
+.section-heading > p {
+  max-width: 450px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.feature-card {
+  min-height: 310px;
+  padding: 32px;
+  border-radius: var(--radius);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.feature-card:hover {
+  transform: translateY(-9px);
+}
+
+.feature-lavender {
+  background: #e9e0ff;
+}
+
+.feature-pink {
+  background: #ffe0ec;
+}
+
+.feature-blue {
+  background: #d9f1ff;
+}
+
+.feature-top {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.feature-number {
+  font-size: 11px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+}
+
+.feature-icon {
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.feature-card h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 31px;
+  font-weight: 500;
+  margin-top: 40px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: #68647b;
+  margin-top: 12px;
+  max-width: 280px;
+}
+
+.feature-link {
+  margin-top: auto;
+  padding-top: 28px;
+  font-size: 12px;
+  transition: var(--transition);
+}
+
+.feature-link:hover {
+  transform: translateX(5px);
+}
+
+/* =========================================
+   ABOUT SECTION
+========================================= */
+
+.about {
+  padding: 120px 8%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 100px;
+  position: relative;
+}
+
+.about-visual {
+  min-height: 470px;
+  position: relative;
+  border-radius: 40px;
+  background:
+    radial-gradient(circle at 30% 25%, #ffffff 0%, transparent 30%),
+    linear-gradient(145deg, #e5d8ff, #ccecff 55%, #f9dceb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-art {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f7eaff, #d7c4ff, #bdeaff);
+  box-shadow:
+    0 30px 80px rgba(125, 100, 195, 0.18),
+    inset 0 0 30px rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+.about-art-flower {
+  font-size: 100px;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+}
+
+.about-art-star {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 32px;
+  color: #fff;
+}
+
+.about-art-sparkle {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  font-size: 35px;
+  color: #fff;
+}
+
+.about-art-circle {
+  position: absolute;
+  top: 40px;
+  left: -15px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: var(--pink);
+}
+
+.about-orbit {
+  position: absolute;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+}
+
+.orbit-one {
+  width: 330px;
+  height: 330px;
+}
+
+.orbit-two {
+  width: 420px;
+  height: 420px;
+}
+
+.about-sticker {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 105px;
+  height: 105px;
+  border-radius: 50%;
+  background: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(12deg);
+  box-shadow: 0 8px 25px rgba(180, 150, 70, 0.12);
+}
+
+.about-sticker span {
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.about-sticker strong {
+  font-size: 25px;
+  color: #b78bda;
+}
+
+.about-content h2 {
+  margin-bottom: 25px;
+}
+
+.about-content h2 span {
+  color: var(--deep-lavender);
+  font-style: italic;
+}
+
+.about-content > p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+  margin-bottom: 18px;
+  max-width: 500px;
+}
+
+.about-content .btn-primary {
+  margin-top: 20px;
+}
+
+/* =========================================
+   CONTACT
+========================================= */
+
+.contact {
+  margin: 70px 8% 100px;
+  padding: 100px 25px;
+  text-align: center;
+  border-radius: 45px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 10% 10%, #ffffff 0%, transparent 25%),
+    linear-gradient(135deg, #e5d8ff, #f8d9e9, #d5efff);
+}
+
+.contact h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(50px, 6vw, 85px);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -3px;
+  margin-top: 25px;
+}
+
+.contact h2 span {
+  color: #8870ca;
+  font-style: italic;
+}
+
+.contact > p {
+  margin: 25px auto;
+  max-width: 430px;
+  color: #716a83;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.contact .btn-primary {
+  margin-top: 10px;
+}
+
+.contact-decoration {
+  position: absolute;
+  top: 45px;
+  right: 10%;
+  font-size: 55px;
+  color: rgba(255, 255, 255, 0.8);
+  animation: sparkle 4s ease-in-out infinite;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  padding: 35px 8% 25px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: "Playfair Display", serif;
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.footer > p {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.back-top {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--deep-lavender);
+}
+
+.back-top:hover {
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  width: 100%;
+  padding-top: 25px;
+  border-top: 1px solid rgba(143, 121, 217, 0.15);
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #a49bb7;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.85) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(15deg);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   RESPONSIVE — TABLETS
+========================================= */
+
+@media (max-width: 1000px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    padding-left: 6%;
+    padding-right: 6%;
+  }
+
+  .hero h1 {
+    font-size: 75px;
+  }
+
+  .hero-visual {
+    height: 480px;
+  }
+
+  .about {
+    gap: 50px;
+  }
+
+  .feature-card {
+    padding: 25px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+  .navbar {
+    padding: 22px 6%;
+  }
+
+  .menu-toggle {
+    display: block;
+    color: var(--text);
+    z-index: 102;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 75px;
+    right: 6%;
+    width: 220px;
+    padding: 25px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 50px rgba(100, 80, 150, 0.12);
+    border: 1px solid rgba(201, 184, 255, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: var(--transition);
+  }
+
+  .nav-links.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 60px 6% 100px;
+    min-height: auto;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin: auto;
+  }
+
+  .hero-tag {
+    margin-bottom: 25px;
+  }
+
+  .hero h1 {
+    font-size: clamp(62px, 14vw, 90px);
+    letter-spacing: -3px;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-bottom-note {
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .hero-visual {
+    height: 430px;
+    margin-top: 20px;
+  }
+
+  .visual-glow {
+    width: 350px;
+    height: 350px;
+  }
+
+  .label-top {
+    top: 35px;
+    right: 2%;
+  }
+
+  .label-bottom {
+    bottom: 35px;
+    left: 2%;
+  }
+
+  .hero-scroll {
+    left: 6%;
+    bottom: 30px;
+  }
+
+  .features {
+    padding: 90px 6%;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .feature-card {
+    min-height: 270px;
+  }
+
+  .about {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 80px 6%;
+  }
+
+  .about-visual {
+    min-height: 380px;
+  }
+
+  .about-content h2 {
+    font-size: 48px;
+  }
+
+  .contact {
+    margin: 40px 5% 70px;
+    padding: 80px 20px;
+    border-radius: 30px;
+  }
+
+  .contact h2 {
+    font-size: 58px;
+  }
+
+  .contact-decoration {
+    top: 20px;
+    right: 7%;
+    font-size: 35px;
+  }
+
+  .footer {
+    padding: 30px 6% 20px;
+  }
+}
+
+/* =========================================
+   RESPONSIVE — SMALL MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+  .hero h1 {
+    font-size: 58px;
+  }
+
+  .hero-visual {
+    height: 350px;
+  }
+
+  .hero-bottom-note {
+    gap: 7px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .floating-label {
+    font-size: 8px;
+    padding: 10px 13px;
+  }
+
+  .about-visual {
+    min-height: 320px;
+  }
+
+  .about-art {
+    width: 180px;
+    height: 180px;
+  }
+
+  .about-art-flower {
+    font-size: 80px;
+  }
+
+  .about-orbit.orbit-one {
+    width: 260px;
+    height: 260px;
+  }
+
+  .about-orbit.orbit-two {
+    width: 330px;
+    height: 330px;
+  }
+
+  .about-sticker {
+    width: 85px;
+    height: 85px;
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .about-content h2 {
+    font-size: 42px;
+  }
+
+  .contact h2 {
+    font-size: 48px;
+  }
+
+  .footer {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+}
+
+
+/* =========================================
+   SHE — FULL WEBSITE COLORFUL REDESIGN
+========================================= */
+
+.website {
+  background: #faf7ff;
+  overflow: hidden;
+}
+
+/* NAVIGATION */
+.navbar {
+  background: rgba(250, 247, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(190, 169, 230, 0.2);
+}
+
+/* HERO — LAVENDER WORLD */
+.hero {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(255, 205, 232, 0.75), transparent 35%),
+    radial-gradient(circle at 15% 80%, rgba(185, 225, 255, 0.8), transparent 35%),
+    linear-gradient(135deg, #f1eaff, #fdf4ff 55%, #e9f5ff);
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: #e4d7ff;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  top: -100px;
+  right: -100px;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: "✧";
+  position: absolute;
+  left: 8%;
+  bottom: 20%;
+  font-size: 100px;
+  color: #c5b0ff;
+  opacity: 0.45;
+  animation: sparkleFloat 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* FEATURES — SKY BLUE WORLD */
+.features {
+  position: relative;
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 255, 255, 0.8), transparent 30%),
+    linear-gradient(180deg, #e7f5ff 0%, #d9efff 50%, #e8f8ff 100%);
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.features::before {
+  content: "✦";
+  position: absolute;
+  top: 80px;
+  right: 8%;
+  font-size: 100px;
+  color: #91cbea;
+  opacity: 0.4;
+  animation: sparkleFloat 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.features::after {
+  content: "";
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: #c9eaff;
+  filter: blur(90px);
+  left: -100px;
+  bottom: 0;
+  pointer-events: none;
+}
+
+/* FEATURE CARDS */
+.feature-card {
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 15px 45px rgba(116, 135, 190, 0.09);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-12px) rotate(-1deg);
+  box-shadow: 0 25px 55px rgba(116, 135, 190, 0.16);
+}
+
+.feature-lavender {
+  background: linear-gradient(145deg, #e8dcff, #cdbbff) !important;
+}
+
+.feature-pink {
+  background: linear-gradient(145deg, #ffe5f1, #ffc5df) !important;
+}
+
+.feature-blue {
+  background: linear-gradient(145deg, #dff5ff, #b8e6ff) !important;
+}
+
+/* ABOUT — PINK WORLD */
+.about {
+  position: relative;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.7), transparent 25%),
+    linear-gradient(135deg, #fff0f7 0%, #ffe0ef 45%, #f8e5ff 100%);
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.about::before {
+  content: "♡";
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  font-size: 110px;
+  color: #f2a9d0;
+  opacity: 0.3;
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
+.about::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: #ffcce7;
+  border-radius: 50%;
+  filter: blur(100px);
+  right: -100px;
+  bottom: -50px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.about-visual,
+.about-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* CONTACT — BUTTER DREAM */
+.contact {
+  position: relative;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.8), transparent 30%),
+    linear-gradient(135deg, #fff8dc, #ffedc5 50%, #ffe4d5);
+  overflow: hidden;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.contact::before {
+  content: "✿";
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  font-size: 150px;
+  color: #f4ca7e;
+  opacity: 0.25;
+  animation: sparkleFloat 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.contact::after {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: #ffe7a3;
+  filter: blur(100px);
+  left: -150px;
+  bottom: -100px;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* FOOTER — SOFT MINT */
+.footer {
+  position: relative;
+  background: linear-gradient(135deg, #e0f8ed, #d3f1e3, #e9fff4);
+  border-top: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+/* TEXT DETAILS */
+.section-eyebrow {
+  letter-spacing: 3px;
+}
+
+.hero,
+.features,
+.about,
+.contact,
+.footer {
+  isolation: isolate;
+}
+
+/* FLOATING DECORATION ANIMATION */
+@keyframes sparkleFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(10deg);
+  }
+}
+
+/* SMOOTH SECTION TRANSITIONS */
+html {
+  scroll-behavior: smooth;
+}
+
+.features,
+.about,
+.contact {
+  scroll-margin-top: 80px;
+}
+
+/* MOBILE COLOR ADJUSTMENTS */
+@media (max-width: 768px) {
+  .hero::after,
+  .features::before,
+  .about::before,
+  .contact::before {
+    font-size: 65px;
+  }
+
+  .features,
+  .about,
+  .contact {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+
+/* ==========================================
+   SHE — ONE CONTINUOUS DREAM ENVIRONMENT
+========================================== */
+
+/* THE WHOLE WEBSITE */
+.website {
+  position: relative;
+  background:
+    radial-gradient(ellipse at 15% 10%, rgba(221, 205, 255, 0.55), transparent 40%),
+    radial-gradient(ellipse at 85% 25%, rgba(255, 207, 232, 0.45), transparent 38%),
+    radial-gradient(ellipse at 20% 60%, rgba(190, 233, 255, 0.45), transparent 40%),
+    radial-gradient(ellipse at 85% 85%, rgba(205, 246, 222, 0.45), transparent 40%),
+    linear-gradient(135deg, #faf7ff, #fdf8ff, #f4faff, #f8fff9);
+  overflow: hidden;
+}
+
+/* REMOVE THE SEPARATE SECTION COLORS */
+.hero,
+.features,
+.about,
+.contact,
+.footer {
+  background: transparent !important;
+}
+
+/* NAVIGATION */
+.navbar {
+  background: rgba(250, 247, 255, 0.45) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* HERO BLENDS INTO THE REST OF THE WEBSITE */
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before {
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, #dfd0ff, #f3eaff 45%, transparent 72%);
+  filter: blur(75px);
+  opacity: 0.65;
+  right: -100px;
+  top: -80px;
+}
+
+.hero::after {
+  color: #c7b4ff;
+  opacity: 0.4;
+}
+
+/* FEATURES SECTION */
+.features {
+  position: relative;
+  isolation: isolate;
+}
+
+.features::before {
+  color: #a9dfff;
+  opacity: 0.4;
+}
+
+.features::after {
+  background: #c9eaff;
+  opacity: 0.35;
+}
+
+/* FEATURE CARDS KEEP THEIR COLOR */
+.feature-lavender {
+  background: linear-gradient(
+    145deg,
+    rgba(233, 223, 255, 0.85),
+    rgba(209, 194, 255, 0.65)
+  ) !important;
+}
+
+.feature-pink {
+  background: linear-gradient(
+    145deg,
+    rgba(255, 228, 242, 0.85),
+    rgba(255, 199, 225, 0.65)
+  ) !important;
+}
+
+.feature-blue {
+  background: linear-gradient(
+    145deg,
+    rgba(224, 246, 255, 0.85),
+    rgba(187, 231, 255, 0.65)
+  ) !important;
+}
+
+/* ABOUT SECTION */
+.about {
+  position: relative;
+  isolation: isolate;
+}
+
+.about::before {
+  color: #f1acd0;
+  opacity: 0.25;
+}
+
+.about::after {
+  background: #ffd5ec;
+  opacity: 0.3;
+}
+
+/* CONTACT */
+.contact {
+  position: relative;
+  isolation: isolate;
+}
+
+.contact::before {
+  color: #f2d17c;
+  opacity: 0.3;
+}
+
+.contact::after {
+  background: #ffedb2;
+  opacity: 0.3;
+}
+
+/* FOOTER */
+.footer {
+  position: relative;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+/* MAKE DECORATIONS BLEND MORE NATURALLY */
+.hero,
+.features,
+.about,
+.contact,
+.footer {
+  background-color: transparent !important;
+}
+
+/* SPACE BETWEEN SECTIONS */
+.features,
+.about,
+.contact {
+  padding-top: 110px;
+  padding-bottom: 110px;
+}
+
+/* KEEP CONTENT ABOVE BACKGROUND DECORATIONS */
+.hero-content,
+.hero-visual,
+.feature-grid,
+.section-heading,
+.about-visual,
+.about-content,
+.contact > * {
+  position: relative;
+  z-index: 2;
+}
+
+
+/* LOTUS — MORE SPACE, LESS CROPPING */
+
+.hero-visual {
+  min-height: 620px;
+  overflow: visible !important;
+}
+
+.lotus-scene {
+  width: 100%;
+  min-height: 580px;
+  overflow: visible !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.three-scene {
+  width: 100%;
+  height: 580px;
+  overflow: visible !important;
+  position: relative;
+}
+
+.three-scene canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* BETTER LOTUS SPACING ON SMALLER SCREENS */
+@media (max-width: 768px) {
+  .hero-visual {
+    min-height: 480px;
+  }
+
+  .lotus-scene {
+    min-height: 450px;
+  }
+
+  .three-scene {
+    height: 450px;
+  }
+}
+
+/* ==========================================
+   SHE — ONE CONTINUOUS DREAM ENVIRONMENT
+========================================== */
+
+.website {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: linear-gradient(
+    180deg,
+    #f4edff 0%,
+    #f6f0ff 24%,
+    #eef7ff 48%,
+    #fff1f8 72%,
+    #f0fff8 100%
+  ) !important;
+}
+
+/* Shared environment across the entire website */
+
+.ambient-world {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Keep website content above the environment */
+
+.navbar,
+.hero,
+.features,
+.about,
+.contact,
+.footer {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+
+/* SOFT COLOR CLOUDS */
+
+.ambient-orb {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  filter: blur(85px);
+  opacity: 0.55;
+}
+
+.orb-one {
+  width: 420px;
+  height: 420px;
+  background: #d5c2ff;
+  top: 5%;
+  left: -150px;
+}
+
+.orb-two {
+  width: 380px;
+  height: 380px;
+  background: #ffcce6;
+  top: 24%;
+  right: -120px;
+}
+
+.orb-three {
+  width: 430px;
+  height: 430px;
+  background: #bfeaff;
+  top: 48%;
+  left: -170px;
+}
+
+.orb-four {
+  width: 450px;
+  height: 450px;
+  background: #c9f2dc;
+  top: 75%;
+  right: -160px;
+}
+
+/* FLOATING GLASS BUBBLES */
+
+.ambient-bubble {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.55),
+    rgba(206, 190, 255, 0.12)
+  );
+  box-shadow:
+    inset 0 0 18px rgba(255, 255, 255, 0.55),
+    0 8px 35px rgba(172, 145, 220, 0.08);
+  backdrop-filter: blur(4px);
+  animation: ambientFloat 8s ease-in-out infinite;
+}
+
+.bubble-one {
+  width: 85px;
+  height: 85px;
+  top: 9%;
+  left: 8%;
+}
+
+.bubble-two {
+  width: 48px;
+  height: 48px;
+  top: 22%;
+  right: 13%;
+  animation-delay: -2s;
+}
+
+.bubble-three {
+  width: 115px;
+  height: 115px;
+  top: 39%;
+  left: 4%;
+  animation-delay: -4s;
+}
+
+.bubble-four {
+  width: 62px;
+  height: 62px;
+  top: 58%;
+  right: 9%;
+  animation-delay: -1s;
+}
+
+.bubble-five {
+  width: 35px;
+  height: 35px;
+  top: 76%;
+  left: 22%;
+  animation-delay: -3s;
+}
+
+.bubble-six {
+  width: 95px;
+  height: 95px;
+  top: 88%;
+  right: 22%;
+  animation-delay: -5s;
+}
+
+/* FLOATING STARS */
+
+.ambient-star {
+  position: absolute;
+  display: block;
+  animation: ambientFloat 7s ease-in-out infinite;
+}
+
+.star-one {
+  top: 12%;
+  right: 30%;
+  color: #a58be9;
+  font-size: 36px;
+}
+
+.star-two {
+  top: 35%;
+  left: 12%;
+  color: #edacd2;
+  font-size: 50px;
+  animation-delay: -2s;
+}
+
+.star-three {
+  top: 62%;
+  right: 16%;
+  color: #a5cde9;
+  font-size: 35px;
+  animation-delay: -4s;
+}
+
+.star-four {
+  top: 83%;
+  left: 50%;
+  color: #c6a8e9;
+  font-size: 42px;
+  animation-delay: -1s;
+}
+
+/* FLOATING MOTION */
+
+@keyframes ambientFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-22px) rotate(8deg);
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+  .ambient-orb {
+    filter: blur(65px);
+    opacity: 0.4;
+  }
+
+  .bubble-one {
+    width: 55px;
+    height: 55px;
+  }
+
+  .bubble-three {
+    width: 70px;
+    height: 70px;
+  }
+
+  .bubble-six {
+    width: 60px;
+    height: 60px;
+  }
+
+  .ambient-star {
+    font-size: 28px;
+  }
+}
+/* ============================================
+   SHE — GLOBAL GLASS ENVIRONMENT
+============================================ */
+
+:root {
+  --glass-white: rgba(255, 255, 255, 0.38);
+  --glass-border: rgba(255, 255, 255, 0.72);
+  --glass-shadow: 0 20px 60px rgba(135, 111, 195, 0.09);
+}
+
+/* Main website atmosphere */
+.website {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+
+  background:
+    radial-gradient(ellipse at 10% 10%, #e8dfff 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 20%, #ffe0f0 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 60%, #dff4ff 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 85%, #e1f8eb 0%, transparent 45%),
+    linear-gradient(180deg, #f8f3ff, #f7f7ff, #fff5fa);
+}
+
+/* Shared background environment */
+.ambient-world {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+/* Keep all content above floating objects */
+.navbar,
+.hero,
+.features,
+.about,
+.contact,
+.footer {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+
+/* GLASS NAVIGATION */
+.navbar {
+  background: rgba(255, 255, 255, 0.25) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.55);
+}
+
+/* GLASS FEATURE CARDS */
+.feature-card {
+  position: relative;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.30) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72) !important;
+  border-radius: 28px;
+
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+
+  box-shadow:
+    0 18px 50px rgba(139, 115, 190, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.8);
+
+  transition:
+    transform 0.4s ease,
+    background 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.45) !important;
+
+  box-shadow:
+    0 25px 65px rgba(139, 115, 190, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* GLASS ABOUT ART */
+.about-art {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* GLASS BUTTONS */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.42) !important;
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.8) !important;
+}
+
+/* GLASS CONTACT AREA */
+.contact {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* GLASS FOOTER */
+.footer {
+  background: rgba(255, 255, 255, 0.20) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+/* ============================================
+   GLOBAL FLOATING GLASS OBJECTS
+============================================ */
+
+/* Base glass bubble */
+.ambient-bubble {
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 28% 25%,
+      rgba(255, 255, 255, 0.95),
+      rgba(255, 255, 255, 0.22) 30%,
+      rgba(204, 181, 255, 0.16) 65%,
+      rgba(255, 192, 230, 0.28)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.8);
+
+  box-shadow:
+    inset -8px -8px 25px rgba(179, 157, 228, 0.12),
+    inset 8px 8px 25px rgba(255, 255, 255, 0.65),
+    0 12px 35px rgba(173, 144, 221, 0.12);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  animation: globalBubbleFloat 9s ease-in-out infinite;
+}
+
+/* Bubble placement across the page */
+.bubble-one {
+  width: 90px;
+  height: 90px;
+  top: 6%;
+  left: 7%;
+}
+
+.bubble-two {
+  width: 48px;
+  height: 48px;
+  top: 14%;
+  right: 12%;
+  animation-delay: -2s;
+}
+
+.bubble-three {
+  width: 120px;
+  height: 120px;
+  top: 32%;
+  left: 3%;
+  animation-delay: -4s;
+}
+
+.bubble-four {
+  width: 65px;
+  height: 65px;
+  top: 48%;
+  right: 7%;
+  animation-delay: -1s;
+}
+
+.bubble-five {
+  width: 38px;
+  height: 38px;
+  top: 68%;
+  left: 20%;
+  animation-delay: -3s;
+}
+
+.bubble-six {
+  width: 100px;
+  height: 100px;
+  top: 86%;
+  right: 19%;
+  animation-delay: -5s;
+}
+
+/* Floating animation */
+@keyframes globalBubbleFloat {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(12px, -24px, 0);
+  }
+}
+/* EXTRA FLOATING OBJECTS */
+
+.star-five {
+  top: 25%;
+  left: 45%;
+  color: #d5a8ff;
+  font-size: 42px;
+  animation-delay: -3s;
+}
+
+.star-six {
+  top: 54%;
+  left: 70%;
+  color: #ffb8dc;
+  font-size: 55px;
+  animation-delay: -5s;
+}
+
+.star-seven {
+  top: 92%;
+  left: 8%;
+  color: #a7d9ed;
+  font-size: 38px;
+  animation-delay: -2s;
+}
+
+.bubble-seven {
+  width: 55px;
+  height: 55px;
+  top: 25%;
+  left: 72%;
+  animation-delay: -6s;
+}
+
+.bubble-eight {
+  width: 75px;
+  height: 75px;
+  top: 58%;
+  left: 42%;
+  animation-delay: -2s;
+}
+
+.bubble-nine {
+  width: 45px;
+  height: 45px;
+  top: 78%;
+  right: 6%;
+  animation-delay: -4s;
+}
+
+/* Additional glowing color clouds */
+.orb-five {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: #e7cfff;
+  filter: blur(100px);
+  top: 38%;
+  right: 20%;
+  opacity: 0.35;
+}
+
+.orb-six {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: #ffcde8;
+  filter: blur(110px);
+  top: 68%;
+  left: 15%;
+  opacity: 0.3;
+}
+/* GLASS FLOATING LABELS */
+
+.floating-label {
+  background: rgba(255, 255, 255, 0.36) !important;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 10px 35px rgba(151, 123, 198, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+/* GLASS STICKER */
+
+.about-sticker {
+  background: rgba(255, 255, 255, 0.38);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 35px rgba(151, 123, 198, 0.10);
+}
+
+/* BUTTON GLASS EFFECT */
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.65) !important;
+  transform: translateY(-3px);
+}
+
+/* SOFT GLASS HOVER FOR CARDS */
+
+.feature-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.4),
+    transparent 55%
+  );
+  opacity: 0.65;
+  pointer-events: none;
+}
