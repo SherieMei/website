@@ -1,293 +1,266 @@
-
 import { useState } from "react";
 import "./App.css";
+import "./MonetTheme.css";
 import LotusCursor from "./LotusCursor";
 import ThreeDScene from "./ThreeDScene";
+import PondEnvironment from "./PondEnvironment";
 
+
+const panels = {
+  discover: {
+    number: "01",
+    eyebrow: "THE SHE EXPERIENCE",
+    title: "A little bit of everything.",
+    description:
+      "Explore the different things that make this space special. Curiosity is always welcome here.",
+    cards: [
+      {
+        number: "01",
+        title: "Create",
+        description: "Turn your thoughts, imagination, and ideas into something uniquely yours.",
+        symbol: "✳",
+      },
+      {
+        number: "02",
+        title: "Explore",
+        description: "Wander through new experiences, discover inspiration, and see things differently.",
+        symbol: "✧",
+      },
+      {
+        number: "03",
+        title: "Imagine",
+        description: "Let your creativity grow without limits. There is always room for something new.",
+        symbol: "♡",
+      },
+    ],
+  },
+  about: {
+    number: "02",
+    eyebrow: "GET TO KNOW US",
+    title: "Not just a website. A little universe.",
+    description:
+      "SHE is a space for creativity, inspiration, and discovery. A place where colors, ideas, and experiences come together to create something memorable.",
+    extra:
+      "Take your time, explore around, and make this little corner of the internet your own.",
+  },
+  contact: {
+    number: "03",
+    eyebrow: "THE NEXT LITTLE THING",
+    title: "Have something in mind?",
+    description:
+      "Every idea starts somewhere. Let's make room for something wonderful.",
+  },
+};
 
 function App() {
+  const [activePanel, setActivePanel] = useState("home");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const navigate = (panel) => {
+    setActivePanel(panel);
+    setMenuOpen(false);
+  };
+
   return (
-  <div className="website" id="home">
-    <LotusCursor />
-    <div className="ambient-world" aria-hidden="true">
-      <span className="ambient-orb orb-one"></span>
-      <span className="ambient-orb orb-two"></span>
-      <span className="ambient-orb orb-three"></span>
-      <span className="ambient-orb orb-four"></span>
-      <span className="ambient-star star-five">✧</span>
-<span className="ambient-star star-six">✦</span>
-<span className="ambient-star star-seven">✳</span>
-
-<span className="ambient-bubble bubble-seven"></span>
-<span className="ambient-bubble bubble-eight"></span>
-<span className="ambient-bubble bubble-nine"></span>
-
-<span className="ambient-orb orb-five"></span>
-<span className="ambient-orb orb-six"></span>
-
-      <span className="ambient-bubble bubble-one"></span>
-      <span className="ambient-bubble bubble-two"></span>
-      <span className="ambient-bubble bubble-three"></span>
-      <span className="ambient-bubble bubble-four"></span>
-      <span className="ambient-bubble bubble-five"></span>
-      <span className="ambient-bubble bubble-six"></span>
-
-      <span className="ambient-star star-one">✦</span>
-      <span className="ambient-star star-two">✧</span>
-      <span className="ambient-star star-three">✳</span>
-      <span className="ambient-star star-four">✦</span>
-    </div>
+    <div className="website monet-site">
+  <PondEnvironment />
+  <LotusCursor />
 
       {/* NAVIGATION */}
-      <nav className="navbar">
-        <a href="#home" className="logo">
+      <header className="monet-header">
+        <button
+          className="monet-logo"
+          onClick={() => navigate("home")}
+          aria-label="Go to home"
+        >
           SHE<span>.</span>
-        </a>
+        </button>
 
-        <div className={`nav-links ${menuOpen ? "active" : ""}`}>
-          <a href="#home" onClick={() => setMenuOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>Our Space</a>
-          <a href="#features" onClick={() => setMenuOpen(false)}>Discover</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Connect</a>
-        </div>
+        <span className="header-caption">THE FLOATING GARDEN</span>
 
         <button
-          className="menu-toggle"
+          className="menu-toggle monet-menu-toggle"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
         >
           {menuOpen ? "✕" : "☰"}
         </button>
-      </nav>
 
-      {/* HERO */}
-      <section className="hero">
-        <div className="hero-content">
+        <nav className={`monet-nav ${menuOpen ? "nav-open" : ""}`}>
+          {[
+            ["home", "Home"],
+            ["discover", "Discover"],
+            ["about", "Our Space"],
+            ["contact", "Connect"],
+          ].map(([panel, label]) => (
+            <button
+              key={panel}
+              className={activePanel === panel ? "nav-active" : ""}
+              onClick={() => navigate(panel)}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      </header>
 
-          <div className="hero-tag">
-            <span className="tag-dot"></span>
-            A LITTLE SPACE TO CREATE
-          </div>
-
-          <p className="hero-label">WELCOME TO SHE</p>
-
-          <h1>
-            A world of
-            <br />
-            your <span>own.</span>
-          </h1>
-
-          <p className="hero-description">
-            A space where creativity blooms, ideas take shape,
-            and little things turn into something extraordinary.
-            Explore a world made to inspire you.
-          </p>
-
-          <div className="hero-buttons">
-            <a href="#features" className="btn-primary">
-              Explore the space <span>↗</span>
-            </a>
-
-            <a href="#about" className="btn-secondary">
-              Discover SHE
-            </a>
-          </div>
-
-          <div className="hero-bottom-note">
-            <span>CREATIVITY</span>
-            <span className="note-divider">✦</span>
-            <span>IMAGINATION</span>
-            <span className="note-divider">✦</span>
-            <span>EXPLORATION</span>
-          </div>
+      {/* MAIN SCENE */}
+      <main className="monet-stage">
+        <div className="scene-counter">
+          <span>{activePanel === "home" ? "00" : panels[activePanel].number}</span>
+          <i />
+          THE SHE EXPERIENCE
         </div>
 
-        {/* 3D LOTUS */}
-        <div className="hero-visual">
-          <div className="visual-glow"></div>
+        {activePanel === "home" && (
+          <section className="home-scene scene-enter">
+            <div className="home-copy">
+              <div className="hero-tag">
+                <span className="tag-dot" />
+                A LITTLE SPACE TO CREATE
+              </div>
 
-          <div className="floating-label label-top">
-            <span>✦</span> DREAM IN COLOR
-          </div>
+              <p className="hero-label">WELCOME TO SHE</p>
 
-          <div className="lotus-scene">
-            <ThreeDScene />
-          </div>
+              <h1>
+                A world of
+                <br />
+                your <em>own.</em>
+              </h1>
 
-          <div className="floating-label label-bottom">
-            A universe of possibilities
-          </div>
+              <p className="hero-description">
+                A space where creativity blooms, ideas take shape,
+                and little things turn into something extraordinary.
+                Explore a world made to inspire you.
+              </p>
 
-          <div className="decor decor-star">✦</div>
-          <div className="decor decor-sparkle">✧</div>
-          <div className="decor decor-circle"></div>
-        </div>
+              <div className="hero-buttons">
+                <button
+                  className="monet-primary"
+                  onClick={() => navigate("discover")}
+                >
+                  Explore the space <span>↗</span>
+                </button>
 
-        <div className="hero-scroll">
-          <span>SCROLL TO EXPLORE</span>
-          <div className="scroll-line"></div>
-        </div>
-      </section>
+                <button
+                  className="monet-secondary"
+                  onClick={() => navigate("about")}
+                >
+                  Discover SHE
+                </button>
+              </div>
 
-      {/* FEATURES */}
-      <section className="features" id="features">
-        <div className="section-heading">
-          <div className="section-eyebrow">
-            <span>01</span> — THE SHE EXPERIENCE
-          </div>
-
-          <h2>
-            A little bit of
-            <span> everything.</span>
-          </h2>
-
-          <p>
-            Explore the different things that make this space
-            special. Curiosity is always welcome here.
-          </p>
-        </div>
-
-        <div className="feature-grid">
-
-          <div className="feature-card feature-lavender">
-            <div className="feature-top">
-              <span className="feature-number">01</span>
-              <span className="feature-icon">✳</span>
+              <div className="hero-bottom-note">
+                CREATIVITY <span>✧</span> IMAGINATION <span>✧</span> EXPLORATION
+              </div>
             </div>
 
-            <h3>Create</h3>
+            <div className="home-art">
+              <div className="lotus-aura" />
+              <div className="lotus-frame">
+                <ThreeDScene />
+              </div>
 
-            <p>
-              Turn your thoughts, imagination, and ideas
-              into something uniquely yours.
-            </p>
+              <div className="glass-note note-top">
+                ✧ DREAM IN COLOR
+              </div>
 
-            <a href="#about" className="feature-link">Discover more ↗</a>
-          </div>
+              <div className="glass-note note-bottom">
+                A universe of possibilities
+              </div>
 
-          <div className="feature-card feature-pink">
-            <div className="feature-top">
-              <span className="feature-number">02</span>
-              <span className="feature-icon">♡</span>
+              <span className="floating-petal petal-one">✿</span>
+              <span className="floating-petal petal-two">✧</span>
             </div>
+          </section>
+        )}
 
-            <h3>Explore</h3>
+        {activePanel !== "home" && (
+          <section className="content-scene scene-enter" key={activePanel}>
+            {activePanel === "discover" && (
+              <>
+                <div className="panel-heading">
+                  <p className="panel-eyebrow">01 — THE SHE EXPERIENCE</p>
+                  <h1>A little bit of <em>everything.</em></h1>
+                  <p>
+                    Explore the different things that make this space special.
+                    Curiosity is always welcome here.
+                  </p>
+                </div>
 
-            <p>
-              Wander through new experiences, discover
-              inspiration, and see things differently.
-            </p>
+                <div className="monet-card-grid">
+                  {panels.discover.cards.map((card) => (
+                    <article className="monet-card" key={card.number}>
+                      <div className="card-top">
+                        <span>{card.number}</span>
+                        <span>{card.symbol}</span>
+                      </div>
+                      <h2>{card.title}</h2>
+                      <p>{card.description}</p>
+                      <button onClick={() => navigate("about")}>
+                        Discover more ↗
+                      </button>
+                    </article>
+                  ))}
+                </div>
+              </>
+            )}
 
-            <a href="#about" className="feature-link">Discover more ↗</a>
-          </div>
+            {activePanel === "about" && (
+              <div className="single-panel">
+                <p className="panel-eyebrow">02 — GET TO KNOW US</p>
+                <h1>Not just a website.<br />A little <em>universe.</em></h1>
+                <p>{panels.about.description}</p>
+                <p>{panels.about.extra}</p>
+                <button
+                  className="monet-primary"
+                  onClick={() => navigate("contact")}
+                >
+                  Find your way here ↗
+                </button>
+              </div>
+            )}
 
-          <div className="feature-card feature-blue">
-            <div className="feature-top">
-              <span className="feature-number">03</span>
-              <span className="feature-icon">✧</span>
-            </div>
+            {activePanel === "contact" && (
+              <div className="single-panel contact-panel">
+                <p className="panel-eyebrow">03 — THE NEXT LITTLE THING</p>
+                <h1>Have something<br /><em>in mind?</em></h1>
+                <p>{panels.contact.description}</p>
+                <a className="monet-primary" href="mailto:hello@example.com">
+                  Let's connect ↗
+                </a>
+              </div>
+            )}
+          </section>
+        )}
+      </main>
 
-            <h3>Imagine</h3>
+      {/* FOOTER / SCENE CONTROLS */}
+      <footer className="monet-footer">
+        <span>© 2026 SHE. MADE WITH IMAGINATION.</span>
 
-            <p>
-              Let your creativity grow without limits.
-              There is always room for something new.
-            </p>
-
-            <a href="#about" className="feature-link">Discover more ↗</a>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ABOUT */}
-      <section className="about" id="about">
-        <div className="about-visual">
-          <div className="about-orbit orbit-one"></div>
-          <div className="about-orbit orbit-two"></div>
-
-          <div className="about-art">
-            <span className="about-art-star">✦</span>
-            <span className="about-art-flower">✿</span>
-            <span className="about-art-sparkle">✧</span>
-            <span className="about-art-circle"></span>
-          </div>
-
-          <div className="about-sticker">
-            <span>MADE WITH</span>
-            <strong>♡</strong>
-            <span>IMAGINATION</span>
-          </div>
-        </div>
-
-        <div className="about-content">
-          <div className="section-eyebrow">
-            <span>02</span> — GET TO KNOW US
-          </div>
-
-          <h2>
-            Not just a website.
-            <br />
-            A little <span>universe.</span>
-          </h2>
-
-          <p>
-            SHE is a space for creativity, inspiration, and
-            discovery. A place where colors, ideas, and
-            experiences come together to create something
-            memorable.
-          </p>
-
-          <p>
-            Take your time, explore around, and make this
-            little corner of the internet your own.
-          </p>
-
-          <a href="#contact" className="btn-primary">
-            Find your way here <span>↗</span>
-          </a>
-        </div>
-      </section>
-
-      {/* CONTACT */}
-      <section className="contact" id="contact">
-        <div className="contact-decoration">✳</div>
-
-        <div className="section-eyebrow">
-          03 — THE NEXT LITTLE THING
+        <div className="scene-dots">
+          {["home", "discover", "about", "contact"].map((panel, index) => (
+            <button
+              key={panel}
+              className={activePanel === panel ? "dot-active" : ""}
+              onClick={() => navigate(panel)}
+              aria-label={`Go to ${panel}`}
+              title={panel}
+            >
+              {String(index + 1).padStart(2, "0")}
+            </button>
+          ))}
         </div>
 
-        <h2>
-          Have something
-          <br />
-          <span>in mind?</span>
-        </h2>
-
-        <p>
-          Every idea starts somewhere. Let's make room
-          for something wonderful.
-        </p>
-
-        <a href="mailto:hello@example.com" className="btn-primary">
-          Let's connect <span>↗</span>
-        </a>
-      </section>
-
-      {/* FOOTER */}
-      <footer className="footer">
-        <a href="#home" className="footer-logo">SHE<span>.</span></a>
-
-        <p>A little universe of creativity.</p>
-
-        <a href="#home" className="back-top">BACK TO TOP ↑</a>
-
-        <div className="footer-bottom">
-          © 2026 SHE. MADE WITH IMAGINATION.
-        </div>
+        <button
+          className="back-home"
+          onClick={() => navigate("home")}
+        >
+          BACK TO HOME ↑
+        </button>
       </footer>
-
     </div>
   );
 }
