@@ -1431,3 +1431,275 @@ body {
 .lotus-aura {
   pointer-events: none;
 }
+
+
+/* MAIN HEADINGS */
+.home-copy h1,
+.panel-heading h1,
+.single-panel h1,
+.monet-card h2 {
+  color: #102F22 !important;
+  text-shadow:
+    0 1px 0 rgba(245, 235, 212, 0.65),
+    0 0 12px rgba(245, 235, 212, 0.45);
+}
+
+/* NORMAL TEXT — PARAGRAPHS */
+.monet-site p,
+.monet-site li,
+.hero-description,
+.panel-heading > p:last-child,
+.single-panel > p:not(.panel-eyebrow),
+.monet-card p {
+  color: #183F2C !important;
+}
+
+/* SMALL LABELS AND EYEBROWS */
+.hero-tag,
+.hero-label,
+.panel-eyebrow,
+.hero-bottom-note,
+.card-top,
+.glass-note,
+.scene-counter {
+  color: #214C35 !important;
+}
+
+/* FLOATING GARDEN HEADER CAPTION */
+.header-caption {
+  color: #E1EEE6 !important;
+  text-shadow: 0 1px 5px rgba(16, 47, 34, 0.45);
+}
+
+/* FOOTER AND OTHER SUPPORTING TEXT */
+.monet-footer,
+.scene-dots button,
+.back-home,
+.monet-card button,
+.monet-secondary {
+  color: #183F2C !important;
+}
+
+/* BUTTON TEXT — KEEP PRIMARY BUTTON WHITE */
+.monet-primary {
+  color: #FFFFFF !important;
+}
+
+/* KEEP PINK ACCENTS UNCHANGED */
+.home-copy h1 em,
+.panel-heading h1 em,
+.single-panel h1 em,
+.monet-logo span,
+.hero-bottom-note span,
+.tag-dot,
+.card-top span:last-child {
+  color: #A77E9E;
+}
+
+
+/* ==========================================
+   SHE — SUBTLE GLASS NAVIGATION
+========================================== */
+
+.monet-nav {
+  gap: 32px;
+  padding: 9px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 50px;
+
+  background: rgba(240, 248, 242, 0.12);
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 4px 18px rgba(31, 72, 53, 0.035);
+}
+
+/* Keep original navigation typography */
+.monet-nav button {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+
+  color: #183F2C;
+
+  font: inherit;
+  font-size: 12px;
+
+  transition: color 0.3s ease;
+}
+
+/* Subtle hover — no button background */
+.monet-nav button:hover {
+  color: #102F22;
+  transform: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Active navigation */
+.monet-nav button.nav-active {
+  color: #102F22;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Keep the tiny pink indicator */
+.monet-nav button.nav-active::after {
+  content: "";
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 6px auto 0;
+  border-radius: 50%;
+  background: #B78BA8;
+}
+
+/* Mobile */
+@media (max-width: 650px) {
+  .monet-nav {
+    gap: 0;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: rgba(240, 248, 242, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .monet-nav button {
+    padding: 14px;
+    text-align: left;
+  }
+
+  .monet-nav button.nav-active::after {
+    display: none;
+  }
+}
+
+.header-caption {
+  display: inline-block;
+  transform-origin: center center;
+  animation: gardenSway 8s ease-in-out infinite;
+}
+
+@keyframes gardenSway {
+  0%, 100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+
+  25% {
+    transform: translateX(-50%) rotate(-1.5deg);
+  }
+
+  50% {
+    transform: translateX(-50%) rotate(0.5deg);
+  }
+
+  75% {
+    transform: translateX(-50%) rotate(1.5deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-caption {
+    animation: none;
+  }
+}
+
+/* Shared glass label behavior */
+.glass-note {
+  position: absolute;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    box-shadow 0.7s ease,
+    border-color 0.7s ease,
+    background 0.7s ease,
+    filter 0.7s ease;
+  cursor: default;
+}
+
+/* DREAM IN COLOR — PEARLESCENT SHIMMER */
+.note-top {
+  animation: gentle-float 7s ease-in-out infinite;
+}
+
+.note-top::after {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -1;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 60%
+  );
+  transform: translateX(-100%);
+  transition: transform 1.2s ease;
+  pointer-events: none;
+}
+
+.note-top:hover::after {
+  transform: translateX(100%);
+}
+
+.note-top:hover {
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(243, 250, 246, 0.55);
+  box-shadow:
+    0 0 20px rgba(255, 255, 255, 0.3),
+    0 8px 30px rgba(180, 210, 200, 0.2);
+  filter: brightness(1.12);
+}
+
+/* A UNIVERSE OF POSSIBILITIES — GENTLE FLOAT */
+.note-bottom {
+  animation: gentle-float 9s ease-in-out infinite reverse;
+}
+
+.note-bottom:hover {
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(243, 250, 246, 0.58);
+  box-shadow:
+    0 0 22px rgba(255, 255, 255, 0.32),
+    0 10px 30px rgba(180, 210, 200, 0.22);
+  filter: brightness(1.13);
+}
+
+/* Smooth hover lift */
+.glass-note:hover {
+  translate: 0 -4px;
+  scale: 1.035;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .note-top,
+  .note-bottom {
+    animation: none;
+  }
+}
+
+/* ENABLE CURSOR INTERACTION ON GLASS LABELS */
+
+.glass-note {
+  pointer-events: auto !important;
+}
+
+/* SOFT GLOW WHEN CURSOR PASSES OVER */
+.glass-note:hover {
+  background: rgba(243, 250, 246, 0.58);
+  border-color: rgba(255, 255, 255, 0.9);
+
+  box-shadow:
+    0 0 12px rgba(255, 255, 255, 0.35),
+    0 0 28px rgba(220, 240, 232, 0.25),
+    0 8px 25px rgba(68, 113, 102, 0.12);
+
+  filter: brightness(1.12);
+  translate: 0 -3px;
+  scale: 1.025;
+}
