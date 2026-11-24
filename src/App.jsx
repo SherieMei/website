@@ -50,6 +50,13 @@ const panels = {
     description:
       "Every idea starts somewhere. Let's make room for something wonderful.",
   },
+    office: {
+    number: "04",
+    eyebrow: "YOUR CREATIVE WORKSPACE",
+    title: "A space to make things happen.",
+    description:
+      "Write your ideas, organize your thoughts, and bring your presentations to life with Microsoft Office.",
+  },
 };
 
 function App() {
@@ -89,11 +96,12 @@ function App() {
 
         <nav className={`monet-nav ${menuOpen ? "nav-open" : ""}`}>
           {[
-            ["home", "Home"],
-            ["discover", "Discover"],
-            ["about", "Our Space"],
-            ["contact", "Connect"],
-          ].map(([panel, label]) => (
+  ["home", "Home"],
+  ["discover", "Discover"],
+  ["about", "Our Space"],
+  ["office", "Office"],
+  ["contact", "Connect"],
+].map(([panel, label]) => (
             <button
               key={panel}
               className={activePanel === panel ? "nav-active" : ""}
@@ -221,7 +229,97 @@ function App() {
                 </button>
               </div>
             )}
+{activePanel === "office" && (
+  <>
+    <div className="panel-heading">
+      <p className="panel-eyebrow">
+        04 — YOUR CREATIVE WORKSPACE
+      </p>
 
+      <h1>
+        Make room for <em>ideas.</em>
+      </h1>
+
+      <p>
+        Your little workspace for writing, organizing,
+        and creating. Choose an application to get started.
+      </p>
+    </div>
+
+    <div className="monet-card-grid">
+
+      <article className="monet-card">
+        <div className="card-top">
+          <span>01</span>
+          <span>✧</span>
+        </div>
+
+        <h2>Microsoft Word</h2>
+
+        <p>
+          Write documents, create notes, and work
+          on your ideas.
+        </p>
+
+        <a
+          className="monet-primary"
+          href="https://www.office.com/launch/word"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Word ↗
+        </a>
+      </article>
+
+      <article className="monet-card">
+        <div className="card-top">
+          <span>02</span>
+          <span>✳</span>
+        </div>
+
+        <h2>Microsoft Excel</h2>
+
+        <p>
+          Organize information, manage spreadsheets,
+          and work with data.
+        </p>
+
+        <a
+          className="monet-primary"
+          href="https://www.office.com/launch/excel"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open Excel ↗
+        </a>
+      </article>
+
+      <article className="monet-card">
+        <div className="card-top">
+          <span>03</span>
+          <span>♡</span>
+        </div>
+
+        <h2>Microsoft PowerPoint</h2>
+
+        <p>
+          Create presentations and bring your
+          stories to life.
+        </p>
+
+        <a
+          className="monet-primary"
+          href="https://www.office.com/launch/powerpoint"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Open PowerPoint ↗
+        </a>
+      </article>
+
+    </div>
+  </>
+)}
             {activePanel === "contact" && (
               <div className="single-panel contact-panel">
                 <p className="panel-eyebrow">03 — THE NEXT LITTLE THING</p>
@@ -241,7 +339,7 @@ function App() {
         <span>© 2026 SHE. MADE WITH IMAGINATION.</span>
 
         <div className="scene-dots">
-          {["home", "discover", "about", "contact"].map((panel, index) => (
+          {["home", "discover", "about", "office", "contact"].map((panel, index) => (
             <button
               key={panel}
               className={activePanel === panel ? "dot-active" : ""}
