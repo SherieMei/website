@@ -112,9 +112,9 @@ function ThreeDScene() {
         // NORMALIZE THE MODEL SIZE
         const maxDimension = Math.max(size.x, size.y, size.z);
 
-        if (maxDimension > 0) {
-          model.scale.setScalar(2.1 / maxDimension);
-        }
+       if (maxDimension > 0) {
+  model.scale.setScalar(2.6 / maxDimension);
+}
 
         // APPLY THE GLASS FINISH
         model.traverse((child) => {
@@ -254,10 +254,11 @@ function ThreeDScene() {
 
       const time = clock.getElapsedTime();
 
-      if (modelGroup && !isDragging) {
-        modelGroup.rotation.y += 0.0015;
-        modelGroup.position.y = Math.sin(time * 0.7) * 0.07;
-      }
+     if (modelGroup && !isDragging) {
+  modelGroup.rotation.y += 0.0015;
+  modelGroup.position.x = 0;
+  modelGroup.position.y = Math.sin(time * 0.7) * 0.07;
+}
 
       lavenderLight.position.x = -3 + Math.sin(time * 0.3) * 0.5;
       pinkLight.intensity = 9 + Math.sin(time * 0.7) * 1.5;
