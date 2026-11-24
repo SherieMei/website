@@ -257,6 +257,13 @@ function createForest(scene) {
     tree.rotation.y = random() * Math.PI * 2;
     tree.scale.setScalar(0.75 + random() * 0.9);
 
+    // Save the original position for natural animation.
+    tree.userData.baseRotationX = tree.rotation.x;
+tree.userData.baseRotationZ = tree.rotation.z;
+tree.userData.swayPhase = i * 2.399963;
+tree.userData.cursorInfluence = 0;
+tree.userData.interactionHeight = height * 0.55;
+
     group.add(tree);
   }
 
@@ -450,14 +457,14 @@ function createWaterMaterial() {
           distance(p.xy, uClick);
 
         float depression =
-          -0.13 *
-          exp(-distanceFromClick * distanceFromClick * 2.8) *
+          -0.24 *
+          exp(-distanceFromClick * distanceFromClick * 1.15) *
           exp(-max(age, 0.0) * 3.2);
 
         float ring =
           sin(distanceFromClick * 10.0 - age * 9.0) *
           exp(-pow(
-            (distanceFromClick - max(age, 0.0) * 0.72) * 1.7,
+            (distanceFromClick - max(age, 0.0) * 1.0) * 1.15,
             2.0
           )) *
           exp(-max(age, 0.0) * 0.85);
@@ -466,7 +473,7 @@ function createWaterMaterial() {
           ring = 0.0;
         }
 
-        height += depression + ring * 0.045;
+        height += depression + ring * 0.11;
 
         p.z += height;
 
@@ -534,14 +541,14 @@ function createWaterMaterial() {
           abs(vClickDistance - max(age, 0.0) * 0.72);
 
         float clickRing =
-          exp(-ringDistance * ringDistance * 35.0) *
+          exp(-ringDistance * ringDistance * 18.0) *
           exp(-max(age, 0.0) * 1.0);
 
         if (age < 0.0 || age > 3.5) {
           clickRing = 0.0;
         }
 
-        color += vec3(0.65, 0.85, 0.79) * clickRing * 0.2;
+        color += vec3(0.75, 0.95, 0.88) * clickRing * 0.38;
         color += vec3(0.11, 0.16, 0.14) * abs(vDepression) * 0.4;
 
         gl_FragColor = vec4(color, 1.0);
@@ -674,7 +681,7 @@ export default function PondEnvironment() {
 
     /* FOREST AND SHORELINE */
 
-    createForest(scene);
+    const forestGroup = createForest(scene);
     createShoreline(scene);
 
     /* MOVING MIST */
@@ -698,8 +705,9 @@ export default function PondEnvironment() {
     /* WATER CLICK INTERACTION */
 
     const raycaster = new THREE.Raycaster();
-    const pointer = new THREE.Vector2();
+    const pointer = new THREE.Vector2(9999, 9999);
     const clock = new THREE.Clock();
+    const projectedTreePosition = new THREE.Vector3();
 
     const onWaterClick = (event) => {
       const rect = renderer.domElement.getBoundingClientRect();
@@ -729,10 +737,11 @@ export default function PondEnvironment() {
       }
     };
 
-    renderer.domElement.addEventListener(
-      "pointerdown",
-      onWaterClick
-    );
+    window.addEventListener(
+      "pointermove",
+      onWaterClick,
+    true
+);
 
     /* ANIMATION */
 
@@ -752,6 +761,63 @@ export default function PondEnvironment() {
         mist.position.x =
           Math.sin(time * 0.035 + index) * 1.2;
       });
+
+      // FOREST — NATURAL WIND + CURSOR INTERACTION
+
+
+// FOREST — ENHANCED WIND + CURSOR INTERACTION
+
+
+forestGroup.children.forEach((tree) => {
+  const phase = tree.userData.swayPhase;
+
+  // Get the tree's actual world position.
+  tree.getWorldPosition(projectedTreePosition);
+
+  // Check the cursor distance at the foliage,
+  // not just the bottom of the tree.
+  projectedTreePosition.y += tree.userData.interactionHeight;
+
+  projectedTreePosition.project(camera);
+
+  const dx = pointer.x - projectedTreePosition.x;
+  const dy = pointer.y - projectedTreePosition.y;
+
+  const distance = Math.sqrt(dx * dx + dy * dy);
+
+  // Wider detection area for both sides.
+  const proximity = THREE.MathUtils.clamp(
+    1 - distance / 0.48,
+    0,
+    1
+  );
+
+  const targetInfluence = proximity * proximity;
+
+  tree.userData.cursorInfluence = THREE.MathUtils.lerp(
+    tree.userData.cursorInfluence,
+    targetInfluence,
+    0.14
+  );
+
+  const influence = tree.userData.cursorInfluence;
+
+  // More noticeable natural wind.
+  const windX = Math.sin(time * 0.8 + phase) * 0.025;
+  const windZ = Math.sin(time * 0.65 + phase) * 0.035;
+
+  // Cursor pushes each tree away.
+  const cursorBendZ = dx * influence * 2.0;
+  const cursorBendX = -dy * influence * 1.5;
+
+  tree.rotation.x =
+    tree.userData.baseRotationX + windX + cursorBendX;
+
+  tree.rotation.z =
+    tree.userData.baseRotationZ + windZ + cursorBendZ;
+});
+
+
 
       renderer.render(scene, camera);
     };
@@ -786,10 +852,11 @@ export default function PondEnvironment() {
       cancelAnimationFrame(animationId);
       resizeObserver.disconnect();
 
-      renderer.domElement.removeEventListener(
-        "pointerdown",
-        onWaterClick
-      );
+      window.removeEventListener(
+  "pointermove",
+  onWaterClick,
+  true
+);
 
       scene.traverse((object) => {
         if (object.geometry) {

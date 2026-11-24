@@ -2065,3 +2065,75 @@ html {
   opacity: 0.65;
   pointer-events: none;
 }
+
+
+/* =========================================
+   FINAL TEXT COLOR OVERRIDE — FOREST GREEN
+   ========================================= */
+
+
+/* =========================================
+   FINAL TEXT COLORS — READABLE FOREST GREEN
+   ========================================= */
+
+/* Default website text */
+body {
+  color: #244B38;
+}
+
+/* Main headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.hero h1,
+.section-heading h2,
+.about-content h2,
+.contact h2,
+.feature-card h3 {
+  color: #244B38;
+}
+
+/* Supporting text and descriptions */
+p,
+li,
+label,
+small,
+.hero-description,
+.section-heading > p,
+.feature-card p,
+.about-content > p,
+.contact > p,
+.footer > p {
+  color: #496B55;
+}
+
+/* Green text accents */
+.hero-tag,
+.hero-label,
+.hero h1 span,
+.section-eyebrow,
+.section-eyebrow span,
+.section-heading h2 span,
+.about-content h2 span,
+.contact h2 span,
+.feature-link,
+.floating-label,
+.hero-bottom-note,
+.footer-bottom,
+.back-top {
+  color: #315F43;
+}
+
+/* About sticker text */
+.about-sticker span,
+.about-sticker strong {
+  color: #315F43;
+}
+
+/* Secondary button text */
+.btn-secondary {
+  color: #244B38;
+}
