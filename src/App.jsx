@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useState, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
 import "./App.css";
 import "./MonetTheme.css";
+import "./Garden.css";
+import Garden from "./Garden";
 import LotusCursor from "./LotusCursor";
 import ThreeDScene from "./ThreeDScene";
 import PondEnvironment from "./PondEnvironment";
 
 
 const panels = {
+  garden: { number: "05" },
   discover: {
     number: "01",
     eyebrow: "THE SHE EXPERIENCE",
@@ -68,13 +72,25 @@ function App() {
     setMenuOpen(false);
   };
 
-  return (
-    <div className="website monet-site">
-  <PondEnvironment />
-  <LotusCursor />
+  useLayoutEffect(() => {
+    if (activePanel !== "garden") return;
+    const html = document.documentElement;
+    const body = document.body;
+    const saved = [html, body].map(el => ({ el, values: ["overflow-y", "height", "max-height", "position", "touch-action"].map(key => [key, el.style.getPropertyValue(key), el.style.getPropertyPriority(key)]) }));
+    for (const { el } of saved) {
+      for (const [key, value] of Object.entries({"overflow-y":"auto", "height":"auto", "max-height":"none", "position":"static", "touch-action":"auto"})) el.style.setProperty(key,value,"important");
+    }
+    html.classList.add("she-garden-open");
+    window.scrollTo(0, 0);
+    return () => {
+      html.classList.remove("she-garden-open");
+      for (const {el, values} of saved) for (const [key, value, priority] of values) { if(value) el.style.setProperty(key,value,priority); else el.style.removeProperty(key); }
+      window.scrollTo(0, 0);
+    };
+  }, [activePanel]);
 
-      {/* NAVIGATION */}
-      <header className="monet-header">
+  const siteHeader = (
+    <header className="monet-header">
         <button
           className="monet-logo"
           onClick={() => navigate("home")}
@@ -100,6 +116,7 @@ function App() {
   ["discover", "Discover"],
   ["about", "Our Space"],
   ["office", "Office"],
+  ["garden", "My Garden"],
   ["contact", "Connect"],
 ].map(([panel, label]) => (
             <button
@@ -112,6 +129,26 @@ function App() {
           ))}
         </nav>
       </header>
+  );
+
+  if (activePanel === "garden") {
+    return createPortal(
+      <div id="she-garden-v3" className="website monet-site she-garden-page">
+        <PondEnvironment />
+        {siteHeader}
+        <main className="garden-page-main"><Garden /></main>
+        <footer className="garden-page-footer"><span>© 2026 SHE. MADE WITH IMAGINATION.</span><button onClick={() => navigate("home")}>BACK TO HOME ↑</button></footer>
+      </div>, document.body
+    );
+  }
+
+  return (
+    <div className="website monet-site">
+  <PondEnvironment />
+  <LotusCursor />
+
+      {/* NAVIGATION */}
+      {siteHeader}
 
       {/* MAIN SCENE */}
       <main className="monet-stage">
@@ -153,9 +190,9 @@ function App() {
 
                 <button
                   className="monet-secondary"
-                  onClick={() => navigate("about")}
+                  onClick={() => navigate("garden")}
                 >
-                  Discover SHE
+                  Open my garden
                 </button>
               </div>
 
@@ -320,6 +357,7 @@ function App() {
     </div>
   </>
 )}
+
             {activePanel === "contact" && (
               <div className="single-panel contact-panel">
                 <p className="panel-eyebrow">03 — THE NEXT LITTLE THING</p>
@@ -339,7 +377,7 @@ function App() {
         <span>© 2026 SHE. MADE WITH IMAGINATION.</span>
 
         <div className="scene-dots">
-          {["home", "discover", "about", "office", "contact"].map((panel, index) => (
+          {["home", "discover", "about", "office", "garden", "contact"].map((panel, index) => (
             <button
               key={panel}
               className={activePanel === panel ? "dot-active" : ""}
